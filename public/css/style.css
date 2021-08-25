@@ -1,0 +1,73 @@
+/* Navigation */
+.nav {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+nav {
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 255, 0.452);
+}
+#home-container {
+  margin-left: 35px;
+  font-size: 30px;
+}
+#profile-login-container {
+  display: flex;
+  width: 6%;
+  justify-content: space-between;
+  margin-right: 30px;
+}
+
+/* Home Page */
+.container-home {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  min-height: 800px;
+}
+.container-posts {
+  display: flex;
+  width: 70%;
+  border: 10px solid black;
+  border-radius: 20px;
+  background-color: rgba(27, 85, 27, 0.5);
+}
+.container-posts-title {
+  display: flex;
+  margin: 10px 0 0 20px;
+}
+.container-posts-title p {
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* login form */
+.container-login {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 60px;
+}
+.form-login {
+  width: 25%;
+}
+.title-login {
+  text-align: center;
+  font-size: 30px;
+}
+/* signup form */
+.container-signup {
+  display: flex;
+  justify-content: center;
+}
+.form-signup {
+  width: 25%;
+}
+.title-signup {
+  text-align: center;
+  font-size: 30px;
+}
