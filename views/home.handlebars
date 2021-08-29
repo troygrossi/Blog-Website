@@ -4,5 +4,23 @@
         <div class="container-posts-title">
             <p>Blog Posts:</p>
         </div>
+        {{#each posts}}
+        <div class="post">
+            <div class="post-author">
+                By: {{user.username}}
+            </div>
+            <div class="post-title">
+                <div>
+                    {{post_title}}
+                </div>
+            </div>
+            <div class="post-view">
+                <button class="view-button">
+                <a href="/post-view/{{id}}">View Post</a></button>
+            </div>
+        </div>
+        {{/each}}
     </div>
+    
 </div>
+<script src="/javascript/script.js"></script>

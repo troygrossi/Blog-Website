@@ -30,6 +30,7 @@ nav {
 }
 .container-posts {
   display: flex;
+  flex-direction: column;
   width: 70%;
   border: 10px solid black;
   border-radius: 20px;
@@ -45,6 +46,52 @@ nav {
   text-decoration: underline;
 }
 
+/* Posts */
+.post {
+  border: 2px solid black;
+  margin: 2px 2px 2px 2px;
+  background-color: rgba(16, 117, 16, 0.5);
+  border-radius: 10px;
+}
+.post-author {
+  margin-left: 10px;
+  font-size: 12px;
+}
+.post-title {
+  border-bottom: 5px solid black;
+  margin-left: 50px;
+  margin-right: 50px;
+  font-weight: bold;
+}
+.post-title div {
+  text-align: center;
+}
+.post-view {
+  text-align: right;
+  margin: 5px 5px 5px 5px;
+}
+.view-button {
+  background-color: rgba(15, 15, 15, 0.5);
+  color: white;
+  border-radius: 10px;
+  font-size: 12px;
+}
+/* Post View (content and comments) */
+.post-content {
+  margin: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+  font-size: 20px;
+}
+.comment-username {
+  margin-left: 10px;
+  font-size: 12px;
+}
+.comment-content {
+  border: 4px solid rgba(0, 0, 0, 0.411);
+  border-radius: 5px;
+  font-size: 15px;
+}
 /* login form */
 .container-login {
   display: flex;
