@@ -50,8 +50,13 @@ router.delete("/", (req, res) => {
     where: {
       id: req.body.post_id,
     },
-  }).then((deletedPost) => {
-    res.json(deletedPost);
-  });
+  })
+    .then((deletedPost) => {
+      res.json(deletedPost);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 module.exports = router;

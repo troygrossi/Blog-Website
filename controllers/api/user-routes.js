@@ -49,9 +49,14 @@ router.get("/profile", (req, res) => {
         id: req.session.user_id,
       },
       attributes: ["id", "username"],
-    }).then((user) => {
-      res.json(user);
-    });
+    })
+      .then((user) => {
+        res.json(user);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
   } else {
     res.json(false);
   }
@@ -86,19 +91,24 @@ router.post("/login", (req, res) => {
       username: req.body.usernameLogin,
       password: req.body.passwordLogin,
     },
-  }).then((user) => {
-    if (!user) {
-      res.status(400).json({ message: "No user with that username" });
-      return;
-    }
-    req.session.save(() => {
-      req.session.user_id = user.id;
-      req.session.username = user.username;
-      req.session.loggedIn = true;
+  })
+    .then((user) => {
+      if (!user) {
+        res.status(400).json({ message: "No user with that username" });
+        return;
+      }
+      req.session.save(() => {
+        req.session.user_id = user.id;
+        req.session.username = user.username;
+        req.session.loggedIn = true;
 
-      res.json({ user, message: "You are now logged in" });
+        res.json({ user, message: "You are now logged in" });
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
     });
-  });
 });
 
 router.post("/logout", (req, res) => {

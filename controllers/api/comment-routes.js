@@ -31,9 +31,14 @@ router.delete("/", (req, res) => {
     where: {
       id: req.body.comment_id,
     },
-  }).then((deletedComments) => {
-    res.json(deletedComments);
-  });
+  })
+    .then((deletedComments) => {
+      res.json(deletedComments);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json(err);
+    });
 });
 
 module.exports = router;
