@@ -1,17 +1,21 @@
 // determines if user is logged in or out and dynamically displays navigation links
 const getUserForProfile = async function () {
-  let user = await fetch("/api/users/profile", {
-    method: "get",
-  });
-  user = await user.json();
-  if (user) {
-    logoutEl.style.display = "";
-    loginEl.style.display = "none";
-    profileEl.style.display = "none";
-  } else {
-    logoutEl.style.display = "none";
-    loginEl.style.display = "";
-    profileEl.style.display = "none";
+  try {
+    let user = await fetch("/api/users/profile", {
+      method: "get",
+    });
+    user = await user.json();
+    if (user) {
+      logoutEl.style.display = "";
+      loginEl.style.display = "none";
+      profileEl.style.display = "none";
+    } else {
+      logoutEl.style.display = "none";
+      loginEl.style.display = "";
+      profileEl.style.display = "none";
+    }
+  } catch (error) {
+    console.log(error);
   }
 };
 getUserForProfile();
@@ -33,32 +37,44 @@ profileContentEl.addEventListener("click", (event) => {
 // Delete post or comment //
 // Deletes a post and associated comments
 const deletePost = async function (post_id) {
-  const comments = await fetch("api/comments/onpost", {
-    method: "delete",
-    body: JSON.stringify({
-      post_id,
-    }),
-    headers: { "Content-Type": "application/json" },
-  });
-  const post = await fetch("api/posts", {
-    method: "delete",
-    body: JSON.stringify({
-      post_id,
-    }),
-    headers: { "Content-Type": "application/json" },
-  });
+  try {
+    const comments = await fetch("api/comments/onpost", {
+      method: "delete",
+      body: JSON.stringify({
+        post_id,
+      }),
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+  try {
+    const post = await fetch("api/posts", {
+      method: "delete",
+      body: JSON.stringify({
+        post_id,
+      }),
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    console.log(error);
+  }
   document.location.replace("/profile");
 };
 // Deletes a single comment
 const deleteComment = async function (comment_id) {
   document.getElementById("comment_" + comment_id).style.display = "none";
-  const post = await fetch("api/comments", {
-    method: "delete",
-    body: JSON.stringify({
-      comment_id,
-    }),
-    headers: { "Content-Type": "application/json" },
-  });
+  try {
+    const post = await fetch("api/comments", {
+      method: "delete",
+      body: JSON.stringify({
+        comment_id,
+      }),
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };
 // Determines if it is a single comment or post with associated comments
 const deleteContent = function (event) {
@@ -79,22 +95,26 @@ const createPostContainerEl = document.querySelector(".container-create-post");
 const createPostTitleEl = document.querySelector("#post-title");
 const createPostContentEl = document.querySelector("#post-content");
 const submitPost = async function () {
-  let user = await fetch("/api/users/profile", {
-    method: "get",
-  });
-  user = await user.json();
-  const user_id = user.id;
-  const post_title = createPostTitleEl.value;
-  const post_content = createPostContentEl.value;
-  const newPost = await fetch("api/posts", {
-    method: "post",
-    body: JSON.stringify({
-      post_title,
-      post_content,
-      user_id,
-    }),
-    headers: { "Content-Type": "application/json" },
-  });
+  try {
+    let user = await fetch("/api/users/profile", {
+      method: "get",
+    });
+    user = await user.json();
+    const user_id = user.id;
+    const post_title = createPostTitleEl.value;
+    const post_content = createPostContentEl.value;
+    const newPost = await fetch("api/posts", {
+      method: "post",
+      body: JSON.stringify({
+        post_title,
+        post_content,
+        user_id,
+      }),
+      headers: { "Content-Type": "application/json" },
+    });
+  } catch (error) {
+    console.log(error);
+  }
   document.location.replace("/profile");
 };
 createPostButtonEl.addEventListener("click", (event) => {
