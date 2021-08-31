@@ -3,6 +3,20 @@
 
 <div class="container-home">
     <div class="container-posts">
+        <button id="button-create-post">Create Post</button>
+        <div class="container-create-post">
+            <div>
+                <label for="post-title">Title:</label>
+                <input id="post-title" type="text"> 
+            </div>
+            <div class="container-post-content">
+                <label for="post-content">Post Content:</label>
+                <textarea id="post-content">
+
+                </textarea>
+            </div>
+            <button id="button-submit-post">Submit</button>          
+        </div>
         <div class="container-title">
             <p>Your Posts:</p>
         </div>
@@ -15,8 +29,8 @@
             </div>
             <div class="post-view">
                 <button class="delete-button" id="delete-post" value="{{id}}">Delete</button>
-                <button class="view-button">
-                <a href="/post-view/{{id}}">View Post</a></button>
+                <button class="view-button" id="view-button-post" value="/post-view/{{id}}">
+                View Post</button>
             </div>
         </div>
         {{/each}}
@@ -24,7 +38,7 @@
             <p>Your Comments:</p>
         </div>
         {{#each user.comments}}
-        <div class="comment" id="{{id}}">
+        <div class="comment" id="comment_{{id}}">
             <div class="post-title">
                 <div>
                     {{post.post_title}}
@@ -37,8 +51,8 @@
             </div>
             <div class="post-view">
                 <button class="delete-button" id="delete-comment" value="{{id}}">Delete</button>
-                <button class="view-button">
-                <a href="/post-view/{{post.id}}/#{{id}}">View Post</a></button>
+                <button class="view-button" id="view-button-comment" value="/post-view/{{post.id}}/#{{id}}">
+                View Post</button>
             </div>
         </div>
         {{/each}}

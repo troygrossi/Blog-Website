@@ -2,8 +2,6 @@ const commentAddEl = document.querySelector(".button-comment");
 const commentTextEl = document.querySelector(".text-comment");
 const commentSubmitEl = document.querySelector(".button-submit");
 const commentFormEl = document.querySelector(".form-comment");
-const post_id = document.querySelector(".post").dataset.userid;
-const user_id = document.querySelector(".post").dataset.postid;
 
 const addComment = async function (event) {
   event.preventDefault();
@@ -23,6 +21,13 @@ const addComment = async function (event) {
 const submitComment = async function (event) {
   event.preventDefault();
   const comment_content = commentTextEl.value;
+  const post_id = document.querySelector(".post").dataset.postid;
+  let user = await fetch("/api/users/profile", {
+    method: "get",
+  });
+  user = await user.json();
+  const user_id = user.id;
+
   let post = await fetch("/api/comments", {
     method: "post",
     body: JSON.stringify({

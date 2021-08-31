@@ -1,9 +1,25 @@
 const logoutEl = document.querySelector("#logout");
 const loginEl = document.querySelector("#login");
 const profileEl = document.querySelector("#profile");
-loginEl.style.display = "none";
-logoutEl.style.display = "none";
-profileEl.style.display = "none";
+
+// determines if user is logged in or out and dynamically displays navigation links
+const getUser = async function () {
+  let user = await fetch("/api/users/profile", {
+    method: "get",
+  });
+  user = await user.json();
+  if (user) {
+    logoutEl.style.display = "";
+    loginEl.style.display = "none";
+    profileEl.style.display = "";
+  } else {
+    logoutEl.style.display = "none";
+    loginEl.style.display = "none";
+    profileEl.style.display = "none";
+  }
+};
+
+getUser();
 
 const signupUser = async function (event) {
   event.preventDefault();

@@ -155,3 +155,8 @@ nav {
   text-align: center;
   font-size: 30px;
 }
+
+/* Profile */
+.container-create-post {
+  display: none;
+}

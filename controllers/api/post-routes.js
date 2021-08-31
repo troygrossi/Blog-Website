@@ -50,16 +50,8 @@ router.delete("/", (req, res) => {
     where: {
       id: req.body.post_id,
     },
-  }).then(() => {
-    console.log("Post Deleted");
-  });
-  Comment.destroy({
-    where: {
-      id: req.body.post_id,
-    },
-  }).then(() => {
-    console.log("Comments Deleted");
-    return;
+  }).then((deletedPost) => {
+    res.json(deletedPost);
   });
 });
 module.exports = router;

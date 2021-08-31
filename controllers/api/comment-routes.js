@@ -16,14 +16,23 @@ router.post("/", (req, res) => {
     });
 });
 
+router.delete("/onpost", (req, res) => {
+  Comment.destroy({
+    where: {
+      post_id: req.body.post_id,
+    },
+  }).then((deletedComments) => {
+    res.json(deletedComments);
+  });
+});
+
 router.delete("/", (req, res) => {
   Comment.destroy({
     where: {
       id: req.body.comment_id,
     },
-  }).then((comment) => {
-    console.log("Comment Deleted");
-    res.json(comment);
+  }).then((deletedComments) => {
+    res.json(deletedComments);
   });
 });
 
