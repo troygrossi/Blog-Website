@@ -34,15 +34,15 @@ router.get("/post-view/:id", (req, res) => {
     include: [
       {
         model: User,
-        attributes: ["username"],
+        attributes: ["username", "id"],
       },
       {
         model: Comment,
-        attributes: ["comment_content"],
+        attributes: ["comment_content", "id"],
         include: [
           {
             model: User,
-            attribute: ["username"],
+            attributes: ["username"],
           },
         ],
       },
@@ -56,6 +56,41 @@ router.get("/post-view/:id", (req, res) => {
       console.log(err);
       res.status(500).json(err);
     });
+});
+
+router.get("/profile", (req, res) => {
+  if (req.session.loggedIn) {
+    User.findOne({
+      where: {
+        id: req.session.user_id,
+      },
+      attributes: ["username", "id"],
+      include: [
+        {
+          model: Post,
+          attributes: ["post_title", "post_content", "id"],
+        },
+        {
+          model: Comment,
+          attributes: ["comment_content", "id"],
+          include: [
+            {
+              model: Post,
+              attributes: ["post_title", "id"],
+            },
+          ],
+        },
+      ],
+    })
+      .then((user) => {
+        user = user.get({ plain: true });
+        res.render("profile", { user });
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  }
 });
 
 router.get("/login", (req, res) => {

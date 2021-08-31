@@ -47,10 +47,19 @@ router.get("/", (req, res) => {
 
 router.delete("/", (req, res) => {
   Post.destroy({
-    where: {},
+    where: {
+      id: req.body.post_id,
+    },
   }).then(() => {
-    console.log("all posts deleted");
-    res.render("home");
+    console.log("Post Deleted");
+  });
+  Comment.destroy({
+    where: {
+      id: req.body.post_id,
+    },
+  }).then(() => {
+    console.log("Comments Deleted");
+    return;
   });
 });
 module.exports = router;

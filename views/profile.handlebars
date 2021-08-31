@@ -1,0 +1,47 @@
+<h1>{{user.username}}</h1>
+<script src="/javascript/home.js"></script>
+
+<div class="container-home">
+    <div class="container-posts">
+        <div class="container-title">
+            <p>Your Posts:</p>
+        </div>
+        {{#each user.posts}}
+        <div class="post">
+            <div class="post-title">
+                <div>
+                    {{post_title}}
+                </div>
+            </div>
+            <div class="post-view">
+                <button class="delete-button" id="delete-post" value="{{id}}">Delete</button>
+                <button class="view-button">
+                <a href="/post-view/{{id}}">View Post</a></button>
+            </div>
+        </div>
+        {{/each}}
+        <div class="container-title">
+            <p>Your Comments:</p>
+        </div>
+        {{#each user.comments}}
+        <div class="comment" id="{{id}}">
+            <div class="post-title">
+                <div>
+                    {{post.post_title}}
+                </div>
+            </div>
+            <div class="comment-content">
+                <div>
+                    {{comment_content}}
+                </div>
+            </div>
+            <div class="post-view">
+                <button class="delete-button" id="delete-comment" value="{{id}}">Delete</button>
+                <button class="view-button">
+                <a href="/post-view/{{post.id}}/#{{id}}">View Post</a></button>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+<script src="javascript/profile.js"></script>

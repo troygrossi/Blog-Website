@@ -16,4 +16,15 @@ router.post("/", (req, res) => {
     });
 });
 
+router.delete("/", (req, res) => {
+  Comment.destroy({
+    where: {
+      id: req.body.comment_id,
+    },
+  }).then((comment) => {
+    console.log("Comment Deleted");
+    res.json(comment);
+  });
+});
+
 module.exports = router;

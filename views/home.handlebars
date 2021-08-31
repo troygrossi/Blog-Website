@@ -5,7 +5,7 @@
             <p>Blog Posts:</p>
         </div>
         {{#each posts}}
-        <div class="post">
+        <div class="post" value="{{id}}">
             <div class="post-author">
                 By: {{user.username}}
             </div>
@@ -23,4 +23,4 @@
     </div>
     
 </div>
-<script src="/javascript/script.js"></script>
+<script src="/javascript/home.js"></script>

@@ -1,5 +1,6 @@
 const logoutEl = document.querySelector("#logout");
 const loginEl = document.querySelector("#login");
+const profileEl = document.querySelector("#profile");
 
 // determines if user is logged in or out and dynamically displays navigation links
 const getUser = async function () {
@@ -10,9 +11,11 @@ const getUser = async function () {
   if (user) {
     logoutEl.style.display = "";
     loginEl.style.display = "none";
+    profileEl.style.display = "";
   } else {
     logoutEl.style.display = "none";
     loginEl.style.display = "";
+    profileEl.style.display = "none";
   }
 };
 

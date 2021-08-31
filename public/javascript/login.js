@@ -1,3 +1,10 @@
+const logoutEl = document.querySelector("#logout");
+const loginEl = document.querySelector("#login");
+const profileEl = document.querySelector("#profile");
+loginEl.style.display = "none";
+logoutEl.style.display = "none";
+profileEl.style.display = "none";
+
 const signupUser = async function (event) {
   event.preventDefault();
   const usernameSignup = document
